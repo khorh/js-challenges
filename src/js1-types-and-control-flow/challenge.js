@@ -20,8 +20,7 @@ const lastName = "Smith";
 
 export const createFullName = () => {
   // Write your code here
-    const fullName = `${firstName}` `${lastName}`;
-    return fullName;
+    return `${firstName} ${lastName}`;
 };
 
 /**
@@ -35,6 +34,7 @@ const largeNumber2 = 200;
 
 export const findLargestNumber = () => {
   // Write your code here
+    return Math.max(largeNumber1, largeNumber2);
 };
 
 /**
@@ -48,6 +48,7 @@ const addNumber2 = 24;
 
 export const addNumbers = () => {
   // Write your code here
+    return addNumber1 + addNumber2;
 };
 
 /* Intermediate Challenges */
@@ -62,6 +63,7 @@ const password = "thisIsMyVeryLongPassword123456789";
 
 export const findLengthOfPassword = () => {
   // Write your code here
+    return password.length;
 };
 
 /**
@@ -78,6 +80,39 @@ const thing = "I am a thing";
 
 export const findType = () => {
   // Write your code here
+    // if statement
+    // let typeofThing = typeof thing;
+    //
+    // if (typeofThing == "string") {
+    //     return "This is a string";
+    // } else if (typeofThing == "number") {
+    //     return "This is a number";
+    // } else if (typeofThing == "boolean") {
+    //     return "This is a boolean";
+    // } else {
+    //     return "I don't know what this thing is";
+    // }
+
+    // switch statement
+
+    let typeofThing = typeof thing;
+    let typeofString;
+
+    switch (typeofThing) {
+        case "string":
+            typeofString = "This is a string";
+            break;
+        case "number":
+            typeofString = "This is a number";
+            break;
+        case "boolean":
+            typeofString = "This is a boolean";
+            break;
+        default:
+            typeofString = "I don't know what this thing is";
+    }
+
+    return typeofString;
 };
 
 /**
@@ -91,6 +126,11 @@ const nameTagOption = "Timothy";
 
 export const getIsValidOnNameTag = () => {
   // Write your code here
+    if (nameTagOption.length <= 8 && nameTagOption[0] == nameTagOption[0].toUpperCase()) {
+        return true;
+    } else {
+        return false;
+    }
 };
 
 /* Advanced Challenges */
@@ -105,6 +145,10 @@ const stringToConvert = "14.45";
 
 export const convertStringToNumber = () => {
   // Write your code here
+    return parseFloat(stringToConvert);
+    //other options
+    // return Number(stringToConvert);
+    // return +(stringToConvert);
 };
 
 /**
@@ -119,6 +163,7 @@ const stringWithUppercaseLetters = "I Am A String With Uppercase Letters";
 
 export const getHasUppercaseLetters = () => {
   // Write your code here
+    return /[A-Z]/.test(stringWithUppercaseLetters)
 };
 
 /* Expert Challenge */
@@ -133,4 +178,5 @@ const pascalCaseVariableName = "IWantToBeSnakeCase";
 
 export const convertPascalCaseToSnakeCase = () => {
   // Write your code here
+    return pascalCaseVariableName.split(/(?=[A-Z])/).join('_').toLowerCase();
 };
