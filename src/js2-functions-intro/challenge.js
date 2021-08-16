@@ -18,6 +18,7 @@
  */
 export const createFullName = (firstName, lastName) => {
   /* Write your code here */
+    return `${firstName} ${lastName}`;
 };
 
 /**
@@ -28,9 +29,12 @@ export const createFullName = (firstName, lastName) => {
  * @param {number} number2 200
  * @returns {number} 100
  */
-export const findSmallestNumber = (/* Write the parameters here */) => {
+export const findSmallestNumber = (number1, number2/* Write the parameters here */) => {
   /* Write your code here */
+    return Math.min(number1, number2);
 };
+
+findSmallestNumber(100, 200);
 
 /**
  * A function that takes two numbers as input, multiplies them together and returns the product.
@@ -40,9 +44,12 @@ export const findSmallestNumber = (/* Write the parameters here */) => {
  * @param {number} number2 6
  * @returns {number} 18
  */
-export const multiplyNumbers = (/* Write the parameters here */) => {
+export const multiplyNumbers = (number1, number2/* Write the parameters here */) => {
   /* Write your code here */
+    return number1 * number2;
 };
+
+multiplyNumbers(3,6);
 
 /* Intermediate Challenges */
 
@@ -58,7 +65,16 @@ export const multiplyNumbers = (/* Write the parameters here */) => {
  */
 export const checkIfNewHighScore = (score, highScore) => {
   /* Write your code here */
+    if (score > highScore) {
+        return "You got a new high score!";
+    } else if (score === highScore) {
+        return "So close!";
+    } else {
+        return "Better luck next time!";
+    }
 };
+
+checkIfNewHighScore(300, 325);
 
 /**
  * A function that converts a temperature a in celsuis to fahrenheit and outputs it in a string format -> "15 degrees celsius is 59 degrees fahrenheit".
@@ -68,7 +84,11 @@ export const checkIfNewHighScore = (score, highScore) => {
  */
 export const celsiusToFahrenheit = (tempInCelsius) => {
   /* Write your code here */
+    const tempInFahrenheit = (tempInCelsius*(9/5)) + 32;
+    return `${tempInCelsius} degrees celsius is ${tempInFahrenheit} degrees fahrenheit`;
 };
+
+celsiusToFahrenheit(15);
 
 /**
  * A function that calculates the numebr of snickers needed for the rest of your life based on the number you eat per day,
@@ -81,7 +101,10 @@ export const celsiusToFahrenheit = (tempInCelsius) => {
  */
 export const calculateLifetimeSupply = (snickersPerDay, age, maxAge) => {
   /* Write your code here */
+    return (maxAge - age) * 365 * snickersPerDay;
 };
+
+calculateLifetimeSupply(2,25,90);
 
 /* Advanced Challenges */
 
@@ -101,7 +124,26 @@ export const calculateLifetimeSupply = (snickersPerDay, age, maxAge) => {
  */
 export const getGrade = (score) => {
   /* Write your code here */
+    if (score < 0 || score > 100 || typeof(score) !== "number") {
+        return "Score unavailable"
+    };
+
+    if (score >= 80) {
+        return "A"
+    } else if (score >= 70) {
+        return "B";
+    } else if (score >= 60) {
+        return "C";
+    } else if (score >= 50) {
+        return "D";
+    } else if (score >= 40) {
+        return "E";
+    } else {
+        return "F";
+    };
 };
+
+getGrade(30);
 
 /**
  * A function that find the area of a circle to 2 decimal places.
@@ -111,7 +153,13 @@ export const getGrade = (score) => {
  */
 export const calculateAreaOfCirlce = (radius) => {
   /* Write your code here */
+    const pie = Math.PI;
+    const area = pie * radius ** 2;
+    const areaToTwoDecimalPlaces = area.toFixed(2);
+    return parseFloat(areaToTwoDecimalPlaces);
 };
+
+calculateAreaOfCirlce(3);
 
 /* Expert Challenge */
 
@@ -132,4 +180,23 @@ export const calculateAreaOfCirlce = (radius) => {
  */
 export const getStudentSummary = (score, name) => {
   /* Write your code here */
+    if (score < 0 || score > 100 || typeof(score) !== "number") {
+        return `My apologies ${name}, there's been an error in processing your grade.`;
+    };
+
+    if (score >= 80) {
+        return `Congratulations ${name}! You achieved a grade of A.`;
+    } else if (score >= 70) {
+        return `Well done ${name}! You achieved a grade of B.`;
+    } else if (score >= 60) {
+        return `Nicely done ${name}! You achieved a grade of C.`;
+    } else if (score >= 50) {
+        return `That's okay ${name}. You achieved a grade of D.`;
+    } else if (score >= 40) {
+        return `Too bad ${name}. You achieved a grade of E.`;
+    } else {
+        return `Sorry ${name}. You achieved a grade of F. There's always next year.`;
+    };
 };
+
+getStudentSummary(30, "John");
