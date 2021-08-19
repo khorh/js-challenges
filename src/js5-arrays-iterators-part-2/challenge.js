@@ -17,12 +17,13 @@
  * A function that uses the REDUCE array iterator to total an array of scores.
  * The scores will be numbers.
  *
- * @param {number[]} numberArr [7, 7, 6, 2, 3, 2, 3]
+ * @param {number[]} scoresArr [7, 7, 6, 2, 3, 2, 3]
  * @return {number} 30
  */
 
 export const totalScoresArr = (scoresArr) => {
-  return;
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
+  return scoresArr.reduce(reducer);
 };
 
 /**
@@ -35,8 +36,12 @@ export const totalScoresArr = (scoresArr) => {
  */
 
 export const reverseString = (toReverse) => {
-  return;
+  const splitString = toReverse.split("");
+  const reverseJoinSplitString = splitString.reverse().join("");
+  return reverseJoinSplitString;
 };
+
+// To keep it easier on the eyes, separate out reverse and join variables
 
 /**
  * A function that arranges an array of characters alphabetically.
@@ -48,7 +53,11 @@ export const reverseString = (toReverse) => {
  */
 
 export const sortCharactersAlphabetically = (charcterArr) => {
-  return;
+  // you cannot create lowercase on an array, you need to iterate over each item
+  const lowerCaseArr = charcterArr.map(character => character.toLowerCase());
+  // sort the new array
+  const sortArr = lowerCaseArr.sort();
+  return sortArr;
 };
 
 /**
@@ -63,7 +72,8 @@ export const sortCharactersAlphabetically = (charcterArr) => {
  */
 
 export const sortNumbersHighToLow = (numberArr) => {
-  return;
+  const sortNumberArr = numberArr.sort((first, second) => second - first);
+  return sortNumberArr;
 };
 
 /**
@@ -94,7 +104,10 @@ export const checkItemInstock = (toCheck) => {
     "blueberry",
     "melon",
   ];
-  return;
+
+  stockList.filter((item, index) => {
+    return item.includes(toCheck).toString() === toCheck ? `${item} is instock, it is on aisle ${index}.` : `Sorry ${item} is not instock.`;
+  });
 };
 
 /**
@@ -108,7 +121,9 @@ export const checkItemInstock = (toCheck) => {
  */
 
 export const checkPrimaryColours = (coloursArr) => {
-  return;
+  const primaryColours = ["red", "blue", "yellow"];
+  const validatePrimaryColours = coloursArr.every(colour => primaryColours.includes(colour));
+  return validatePrimaryColours;
 };
 
 /**
@@ -125,8 +140,14 @@ export const checkPrimaryColours = (coloursArr) => {
  */
 
 export const checkStringPalindrome = (stringOne) => {
-  return;
+  const splitStringOne = stringOne.split(""); // splits the string into individual characters in an array
+  const reverseStringOne = splitStringOne.reverse(); // reverses the order of the array
+  const joinStringOne = reverseStringOne.join(""); // joins the array items into a string
+
+  return joinStringOne === stringOne ? true : false;
 };
+
+// easier to use reverseString method
 
 /**
  * A function that totals a nested array of scores arrays.
@@ -138,8 +159,10 @@ export const checkStringPalindrome = (stringOne) => {
  * @return {number[]} [20, 7, 3]
  */
 
-export const totalNestedScoresArr = (scoresArr) => {
-  return;
+export const totalNestedScoresArr = (numberArr) => {
+  const reducer = (total, current) => total + current;
+  const mapNumberArr = numberArr.map(innerArray => innerArray.reduce(reducer));
+  return mapNumberArr;
 };
 
 /**

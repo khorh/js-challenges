@@ -21,8 +21,10 @@
  * @return {string} "Bacon+Lettuce+Tomato"
  */
 
+const ingredientsArr = ["Bacon", "Lettuce", "Tomato"];
+
 export const createRecipeString = (ingredientsArr) => {
-  return;
+  return ingredientsArr.join("+");
 };
 
 /**
@@ -32,8 +34,12 @@ export const createRecipeString = (ingredientsArr) => {
  * @return {string[]} ["Tony","Dave"]
  */
 
+const itemsArr = ["Tony", "John", "Dave"];
+
 export const getFirstAndLastItems = (itemsArr) => {
-  return;
+  const itemsArrFirst = itemsArr[0];
+  const itemsArrLast = itemsArr[itemsArr.length - 1];
+  return [itemsArrFirst, itemsArrLast];
 };
 
 /**
@@ -44,7 +50,11 @@ export const getFirstAndLastItems = (itemsArr) => {
  */
 
 export const totalScores = (scoreArr) => {
-  return;
+  let scoreSum = 0;
+  for(let index = 0; index < scoreArr.length; index++) {
+    scoreSum += scoreArr[index];
+  }
+  return scoreSum;
 };
 
 /**
@@ -60,8 +70,22 @@ export const totalScores = (scoreArr) => {
  */
 
 export const totalRange = (rangeMax) => {
-  return;
+  // create an array containing numbers between 0 and 10
+  const rangeArr = [];
+  for(let index = 0; index <= rangeMax; index++) {
+    rangeArr.push(index);
+  }
+
+  // add up all the numbers in the array
+  let rangeTotal = 0;
+  for (let index = 0; index < rangeArr.length; index++) {
+    rangeTotal += rangeArr[index];
+  }
+
+  return rangeTotal;
 };
+
+// see solution for shorter solution
 
 /**
  * A function that takes an array and returns a NEW ARRAY where the last item has been moved to the front of the array and removed from the back.
@@ -71,7 +95,12 @@ export const totalRange = (rangeMax) => {
  */
 
 export const moveFirstAndLastItems = (itemsArr) => {
-  return;
+  // remove last item from array
+  const itemsArrLast = itemsArr.pop();
+  // add to the front of array
+  const itemsArrFirst = itemsArr.unshift("Dave");
+
+  return itemsArr;
 };
 
 /**

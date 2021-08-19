@@ -43,7 +43,7 @@ describe("Testing createRecipeString()", () => {
   });
 });
 
-xdescribe("Testing getFirstAndLastItems()", () => {
+describe("Testing getFirstAndLastItems()", () => {
   it("Should be defined", () => {
     expect(getFirstAndLastItems(coaches)).toBeDefined();
   });
@@ -58,7 +58,7 @@ xdescribe("Testing getFirstAndLastItems()", () => {
   });
 });
 
-xdescribe("Testing totalScores()", () => {
+describe("Testing totalScores()", () => {
   it("Should be defined", () => {
     expect(totalScores(scores)).toBeDefined();
   });
@@ -81,7 +81,7 @@ xdescribe("Testing totalScores()", () => {
   });
 });
 
-xdescribe("Testing totalRange()", () => {
+describe("Testing totalRange()", () => {
   it("Should be defined", () => {
     expect(totalRange(10)).toBeDefined();
   });
@@ -102,7 +102,7 @@ xdescribe("Testing totalRange()", () => {
   });
 });
 
-xdescribe("Testing moveFirstAndLastItems()", () => {
+describe("Testing moveFirstAndLastItems()", () => {
   it("Should be defined", () => {
     expect(moveFirstAndLastItems(items)).toBeDefined();
   });

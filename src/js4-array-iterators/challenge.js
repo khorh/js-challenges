@@ -22,8 +22,11 @@
  */
 
 export const removeFalseValues = (booleanArr) => {
-  return;
+  const trueValues = booleanArr.filter(booleanItem => booleanItem);
+  return trueValues;
 };
+
+// Filter checks for when items are true so only return true items.
 
 /**
  * A function that takes an array of numbers that are between 0 - 1.
@@ -34,8 +37,11 @@ export const removeFalseValues = (booleanArr) => {
  */
 
 export const createPercentageList = (numbersArr) => {
-  return;
+  const percentageArr = numbersArr.map(number => (number * 100).toString() + "%");
+  return percentageArr;
 };
+
+// Do not need the toString simply `${number * 100}%`
 
 /**
  * A function that takes an array of possessions and a name.
@@ -47,7 +53,9 @@ export const createPercentageList = (numbersArr) => {
  */
 
 export const createListOfPoessessions = (possessionsArr, name) => {
-  return;
+  // iterate over each possession and add the name disco
+  const possessionsNewArr = possessionsArr.map(possession => `${name} ${possession}`);
+  return possessionsNewArr;
 };
 
 /**
@@ -72,8 +80,13 @@ export const createListOfPoessessions = (possessionsArr, name) => {
  */
 
 export const convertStringToNumbersArray = (numberString) => {
-  return;
+  // split the variable using +
+  // create a new array and change each item into a number
+  const numbers = numberString.split("+").map(number => parseInt(number));
+  return numbers;
 };
+
+// Better to use Number rather than parseInt to include both integers and floats
 
 /**
  * A function that takes a string of numbers joined with a "+" and creates a new array based on if the number is even or odd.
@@ -84,7 +97,11 @@ export const convertStringToNumbersArray = (numberString) => {
  */
 
 export const createOddEvenArray = (numberString) => {
-  return;
+  // As per previous challenge, reuse the function
+  const numbers = numberString.split("+").map(number => parseInt(number));
+  // change the numbers into even or odd
+  const numbersEvenOdd = numbers.map(number => number % 2 ===0 ? "even" : "odd");
+  return numbersEvenOdd;
 };
 
 /**
@@ -97,7 +114,8 @@ export const createOddEvenArray = (numberString) => {
  */
 
 export const filterBooksBySearch = (booksArr, searchTerm) => {
-  return;
+  const filteredBooks = booksArr.filter(book => book.includes(searchTerm));
+  return filteredBooks;
 };
 
 /**
@@ -117,7 +135,8 @@ export const filterBooksBySearch = (booksArr, searchTerm) => {
  */
 
 export const formatStringArray = (stringArr) => {
-  const cleanedArr = stringArr.forEach((string) => {
+  // replaced for each with map
+  const cleanedArr = stringArr.map((string) => {
     const cleanStr = string.trim().toLowerCase();
     return cleanStr;
   });
@@ -143,8 +162,16 @@ export const formatStringArray = (stringArr) => {
  */
 
 export const formatString = (string) => {
-  return;
+  // use regex to remove whitespaces, numbers and symbols.  trim only removes spaces on the outside
+  const formattedString = string.replace(/[^\w]|[\s\d]/gi, "");
+  // must insert "" to split string into individual characters, cannot leave empty
+  const splitString = formattedString.split("");
+  // if statement for upper and lower cases
+  const upperLowerString = splitString.map((letter, index) => index % 2 === 0 ? letter.toUpperCase() : letter.toLowerCase());
+  return upperLowerString;
 };
+
+// My regex was different so didnt pass all the tests /[\s0-9$!%^&-]/g
 
 /**
  * Expert Challenge
@@ -170,5 +197,17 @@ export const formatString = (string) => {
  */
 
 export const fizzBuzz = (mixedArray) => {
-  return;
+  const reducedArray = mixedArray.filter(item => item > 0);
+  const newArray = reducedArray.map(number => {
+    if (number % 3 === 0 && number % 5 === 0) {
+      return "FizzBuzz";
+    } else if (number % 3 === 0) {
+      return "Fizz";
+    } else if (number % 5 === 0) {
+      return "Buzz";
+    } else {
+      return number.toString();
+    };
+  });
+  return newArray;
 };
