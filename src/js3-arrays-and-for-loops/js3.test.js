@@ -117,7 +117,7 @@ describe("Testing moveFirstAndLastItems()", () => {
   });
 });
 
-xdescribe("Testing removeEvenNumbers()", () => {
+describe("Testing removeEvenNumbers()", () => {
   it("Should be defined", () => {
     expect(removeEvenNumbers(scores)).toBeDefined();
   });
@@ -149,7 +149,7 @@ xdescribe("Testing removeEvenNumbers()", () => {
   });
 });
 
-xdescribe("Testing generateAverage()", () => {
+describe("Testing generateAverage()", () => {
   it("Should be defined", () => {
     expect(generateAverage([10])).toBeDefined();
   });
@@ -174,7 +174,7 @@ xdescribe("Testing generateAverage()", () => {
   });
 });
 
-xdescribe("Testing reverseOrder()", () => {
+describe("Testing reverseOrder()", () => {
   it("Should be defined", () => {
     expect(reverseOrder(items)).toBeDefined();
   });
@@ -202,7 +202,7 @@ xdescribe("Testing reverseOrder()", () => {
   });
 });
 
-xdescribe("Testing generateHighscores()", () => {
+describe("Testing generateHighscores()", () => {
   let players, playerScores, highscores;
   beforeEach(() => {
     players = ["Andy", "Bex", "Calum"];
