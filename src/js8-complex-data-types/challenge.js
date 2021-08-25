@@ -157,7 +157,8 @@ export const setImportantKeys = (mealsArr) => {
             ingredients: meal.ingredients,
             country: meal.country,
             isVegetarian: !meal.isVegetarian === false,
-            timeToCook: meal.timeToCook ? meal.timeToCook : 15 }
+            timeToCook: meal.timeToCook ? meal.timeToCook : 15
+        }
 
         return fullMealObject;
     });
@@ -196,13 +197,25 @@ export const setImportantKeys = (mealsArr) => {
 export const cleanCocktailResponseData = (cocktailData) => {
   // Write code here
     const newCocktailData = cocktailData.map(cocktail => {
+        const ingredients = [
+            cocktail.strIngredient1,
+            cocktail.strIngredient2,
+            cocktail.strIngredient3,
+            cocktail.strIngredient4,
+            cocktail.strIngredient5,
+            cocktail.strIngredient6
+        ]
+
+        const filterIngredients = ingredients.filter(ingredient => !ingredient === false);
+
         const newCocktailStructure = {
             id: cocktail.idDrink,
             drink: cocktail.strDrink,
             category: cocktail.strCategory,
             alcoholic: cocktail.strAlcoholic,
             instructions: cocktail.strInstructions,
-            ingredients: [cocktail.strIngredient1, cocktail.strIngredient2, cocktail.strIngredient3, cocktail.strIngredient4, cocktail.strIngredient5, cocktail.strIngredient6] };
+            ingredients: filterIngredients
+        };
 
         return newCocktailStructure;
     });
