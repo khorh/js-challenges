@@ -183,6 +183,8 @@ export const generateHighscores = (playersArr, scoresArr) => {
   return joinArr;
 };
 
+
+
 /**
  * A function that takes a string and creates a simple encrypted message.
  *

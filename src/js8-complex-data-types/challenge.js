@@ -18,6 +18,11 @@
  */
 export const getEmployeeQuotes = (employeeArr) => {
   // Write code here
+    const employeeQuotes = employeeArr.map((employee) => {
+        return employee.quote;
+    });
+
+    return employeeQuotes;
 };
 
 /**
@@ -28,6 +33,11 @@ export const getEmployeeQuotes = (employeeArr) => {
  */
 export const getTheManagers = (employeeArr) => {
   // Write code here
+    const employeeManagers = employeeArr.filter((employee) => {
+        return employee.isManagement === true; // no need for the true as it return true by default
+    });
+
+    return employeeManagers
 };
 
 /**
@@ -38,6 +48,8 @@ export const getTheManagers = (employeeArr) => {
  */
 export const getNumberOfKeys = (object) => {
   // Write code here
+    const numberOfKeys = Object.keys(object).length;
+    return numberOfKeys;
 };
 
 /* Intermediate Challenges */
@@ -51,6 +63,8 @@ export const getNumberOfKeys = (object) => {
  */
 export const findMostExpensiveItem = (shoppingBasketArr) => {
   // Write code here
+    const mostExpensiveItem = shoppingBasketArr.sort((a, b) => b.price - a.price);
+    return mostExpensiveItem[0];
 };
 
 /**
@@ -70,6 +84,14 @@ export const findMostExpensiveItem = (shoppingBasketArr) => {
  */
 export const settotalPrice = (shoppingBasketArr) => {
   // Write code here
+    const shoppingBasketWithTotals = shoppingBasketArr.map((item) => {
+        const newItem = { ...item };
+        const totalPrice = newItem.price * newItem.quantity;
+        newItem.totalPrice = totalPrice;
+        return newItem;
+    });
+
+    return shoppingBasketWithTotals;
 };
 
 /**
@@ -80,6 +102,10 @@ export const settotalPrice = (shoppingBasketArr) => {
  */
 export const totalShoppingBasket = (shoppingBasketArr) => {
   // Write code here
+    const totalPrices = shoppingBasketArr.map(item => item.totalPrice); // [35, 60, 60, 25, 5]
+    const totalOrder = totalPrices.reduce((a, b) => a + b);
+
+    return totalOrder;
 };
 
 /* Advanced Challenges */
@@ -93,6 +119,21 @@ export const totalShoppingBasket = (shoppingBasketArr) => {
  */
 export const getImportantKeys = (mealsArr) => {
   // Write code here
+  //   // delete operator - output is the same but modifies the array.  You can use the ...spread operator initially to copy the array first.
+  //   const newMealsArr = mealsArr.map(item => {
+  //       delete item.timeStamp;
+  //       delete item.userCreated
+  //       return item;
+  //   });
+  //
+  //   return newMealsArr;
+
+    const newMealsArr = mealsArr.map(meal => {
+        const newMeal = { id: meal.id, name: meal.name, ingredients: meal.ingredients, country: meal.country };
+        return newMeal;
+    });
+
+    return newMealsArr;
 };
 
 /**
@@ -107,6 +148,21 @@ export const getImportantKeys = (mealsArr) => {
  */
 export const setImportantKeys = (mealsArr) => {
   // Write code here
+    // create a new array object (map) which includes all the keys
+    // for the two keys insert a ternary operator to include defaults
+    const newMealsArr = mealsArr.map(meal => {
+        const fullMealObject = {
+            id: meal.id,
+            name: meal.name,
+            ingredients: meal.ingredients,
+            country: meal.country,
+            isVegetarian: !meal.isVegetarian === false,
+            timeToCook: meal.timeToCook ? meal.timeToCook : 15 }
+
+        return fullMealObject;
+    });
+
+    return newMealsArr;
 };
 
 /* Expert Challenge */
@@ -139,4 +195,17 @@ export const setImportantKeys = (mealsArr) => {
  */
 export const cleanCocktailResponseData = (cocktailData) => {
   // Write code here
+    const newCocktailData = cocktailData.map(cocktail => {
+        const newCocktailStructure = {
+            id: cocktail.idDrink,
+            drink: cocktail.strDrink,
+            category: cocktail.strCategory,
+            alcoholic: cocktail.strAlcoholic,
+            instructions: cocktail.strInstructions,
+            ingredients: [cocktail.strIngredient1, cocktail.strIngredient2, cocktail.strIngredient3, cocktail.strIngredient4, cocktail.strIngredient5, cocktail.strIngredient6] };
+
+        return newCocktailStructure;
+    });
+
+    return newCocktailData;
 };

@@ -27,7 +27,10 @@ export class Coordinate {
    * @param {number} xCoord - 22.
    * @param {number} yCoord - 20.
    */
-  constructor(xCoord, yCoord) {}
+  constructor(xCoord, yCoord) {
+    this.xCoord = xCoord;
+    this.yCoord = yCoord;
+  }
 }
 
 /**
@@ -48,14 +51,17 @@ export class Alert {
    * Create an alert.
    * @param {string} message - "Are sure you want to proceed?"
    */
-  constructor() {}
+  constructor(message) {
+    this.message = message;
+  }
 
   /**
    * Returns a string with "!!!! " + " !!!!" added to the start and end of the message key.
    * @return {string} "!!!! Are sure you want to proceed? !!!!"
    */
   printMessage() {
-    return;
+    const message = `!!!! ${this.message} !!!!`;
+    return message;
   }
 }
 
@@ -83,17 +89,23 @@ export class Loader {
    * Create a loader.
    * @param {{innerHTML:string}} htmlRef - {innerHTML:""}
    */
-  constructor() {}
+  constructor(htmlRef) {
+    this.htmlRef = htmlRef;
+  }
 
   /**
    * Updates the htmlRef.innerHTML to display the loader's html.
    */
-  displayLoader() {}
+  displayLoader() {
+    this.htmlRef.innerHTML = '<div class="loader"></div>';
+  }
 
   /**
    * Updates the htmlRef.innerHTML to remove the loader's html.
    */
-  removeLoader() {}
+  removeLoader() {
+    this.htmlRef.innerHTML = '';
+  }
 }
 
 /**
@@ -125,7 +137,9 @@ export class Counter {
    * Create an counter.
    * @param {number} count - 50
    */
-  constructor() {}
+  constructor(count= 0) {
+    this.count = count;
+  }
 
   /**
    * A method that increments count by 1.
@@ -133,6 +147,10 @@ export class Counter {
    */
 
   // WRITE INCREMENT FUNCTION HERE
+  increment() {
+    this.count += 1;
+    return this.count;
+  }
 
   /**
    * A method that decrements count by 1 but will not go below 0.
@@ -140,6 +158,10 @@ export class Counter {
    */
 
   // WRITE DECREMENT FUNCTION HERE
+  decrement() {
+    this.count > 0 ? this.count -= 1 : 0;
+    return this.count;
+  }
 }
 
 /**
@@ -167,22 +189,31 @@ export class Engine {
   /**
    * Create an engine.
    */
-  constructor() {}
+  constructor() {
+    this.engineIsRunning = false;
+  }
 
   /**
    * Updates engineIsRunning to true and returns a conditonal string based if the engine is already running.
    * @return {string} "Engine has started running" or "Engine is already running"
    */
   startEngine() {
-    return;
+    const message = this.engineIsRunning ? "Engine is already running" : "Engine has started running";
+    !this.engineIsRunning ? (this.engineIsRunning = true) : null;
+    return message;
   }
+
+  // Andy to explain !this.engineIsRunning ? (this.engineIsRunning = true) : null;
+
 
   /**
    * Updates engineIsRunning to false and returns a conditonal string based if the engine has already stopped.
    * @return {string} "Engine has stopped running" or "Engine has already stopped running"
    */
   stopEngine() {
-    return;
+    const message = this.engineIsRunning ? "Engine has stopped running" : "Engine has already stopped running";
+    this.engineIsRunning ? (this.engineIsRunning = false) : null;
+    return message;
   }
 }
 
@@ -224,20 +255,36 @@ export class Modal {
    * @param {string} title - "Error"
    * @param {string} message - "We are currently unable to provide this service"
    */
-  constructor() {}
+  constructor(htmlRef, title, message) {
+    this.htmlRef = htmlRef;
+    this.title = title;
+    this.message = message;
+  }
 
   /**
    * A method that renders the html for a modal.
    */
-
   // WRITE RENDER HTML METHOD HERE
+  renderHtml() {
+    this.htmlRef.innerHTML = `
+    <div class="modal">
+      <h2 class="modal--title">${this.title}</h2>
+      <p class="modal--message">${this.message}</p>
+    </div>
+    `;
+  }
 
   /**
    * A method that toggles a CSS class to either show or hide the modal.
    */
 
   // WRITE DISPLAY MODAL METHOD HERE
+  displayModal() {
+    this.htmlRef.classList.toggle("hide");
+  }
 }
+
+// Andy to explain how it works with css file.
 
 /**
  * Advanced Challenges
@@ -304,6 +351,11 @@ export class BookShelf {
    */
 
   // WRITE LATEST BOOK GETTER HERE
+  get latestBook() {
+    // better than pop as it takes the value away from the array
+    const lastBook = this._booksOnShelf[this._booksOnShelf.length - 1];
+    return lastBook;
+  }
 
   /**
    * A setter that adds a new book to the list of books.
@@ -311,6 +363,10 @@ export class BookShelf {
    */
 
   // WRITE ADD BOOK TO SHELF SETTER HERE
+  set addBookToShelf(book) {
+    const addBook = this._booksOnShelf.push(book);
+    return addBook;
+  }
 }
 
 /**
@@ -363,7 +419,11 @@ export class BankAccount {
    * @param {string} email
    * @param {number} balance
    */
-  constructor() {}
+  constructor(name, email, balance) {
+    this.name = name;
+    this.email = email;
+    this._balance = balance;
+  }
 
   /**
    * A getter that returns the current balance.

@@ -22,6 +22,7 @@
  */
 export const getFurniturePrice = (furniture) => {
   /* Write code here */
+    return furniture.price;
 };
 
 /**
@@ -33,6 +34,8 @@ export const getFurniturePrice = (furniture) => {
  */
 export const setFurnitureStoreLocation = (furniture, location) => {
   /* Write code here */
+    furniture.location = location;
+    return furniture;
 };
 
 /**
@@ -47,6 +50,14 @@ export const setFurnitureStoreLocation = (furniture, location) => {
  */
 export const makeSpaceship = (name, noOfSeats, engineType, canTravelSolarSystems) => {
   /* Write code here */
+    const spaceshipObject = {
+        name: name,
+        noOfSeats: noOfSeats,
+        engineType: engineType,
+        canTravelSolarSystems: canTravelSolarSystems
+    };
+
+    return spaceshipObject;
 };
 
 /* Intermediate Challenges */
@@ -60,7 +71,15 @@ export const makeSpaceship = (name, noOfSeats, engineType, canTravelSolarSystems
  */
 export const setUserName = (user, username) => {
   /* Write code here */
+    if (!user.username) {
+        user.username = username;
+    }
+
+    return user;
 };
+
+// user? means it is optional
+// !user.username means not NULL, undefined or empty
 
 /**
  * A function which takes a customer object from the database and returns the same object where the name has been
@@ -71,6 +90,15 @@ export const setUserName = (user, username) => {
  */
 export const splitFullNameToFirstAndLast = (customer) => {
   /* Write code here */
+    const splitFullName = customer.fullName.split(' ');
+    const firstName = splitFullName[0];
+    const lastName = splitFullName[1];
+
+    // This inserts the new key value pair into the object
+    customer.firstName = firstName;
+    customer.lastName = lastName;
+
+    return customer;
 };
 
 /**
@@ -84,6 +112,7 @@ export const splitFullNameToFirstAndLast = (customer) => {
  */
 export const accessGivenKey = (object, key) => {
   /* Write code here */
+    return object[key];
 };
 
 /* Advanced Challenges */
@@ -97,7 +126,11 @@ export const accessGivenKey = (object, key) => {
  */
 export const getUserAddress = (user) => {
   /* Write code here */
+    const shippingLabel = user.address.line1 + ' ' + user.address.line2 + ' ' + user.address.city + ' ' + user.address.postcode;
+    return shippingLabel;
 };
+
+// You can also use template literals
 
 /**
  * A function that given a customer for the restaurant with a list of known allergies and a list of allergens in an
@@ -109,6 +142,13 @@ export const getUserAddress = (user) => {
  */
 export const setSafeAllergens = (customer, allergenList) => {
   /* Write code here */
+    const safeAllergens = allergenList.filter((allergen) => {
+        return !customer.allergies.includes(allergen);
+    });
+
+    customer.safeAllergens = safeAllergens;
+
+    return customer;
 };
 
 /* Expert Challenge */
@@ -123,4 +163,8 @@ export const setSafeAllergens = (customer, allergenList) => {
  */
 export const mergeFurniture = (furnitureLocationData, furnitureProductData) => {
   /* Write code here */
+    // Use the spread operator which is part of ES6
+    const furnitureData = {...furnitureLocationData, ...furnitureProductData};
+
+    return furnitureData;
 };
