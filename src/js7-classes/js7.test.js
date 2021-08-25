@@ -460,7 +460,7 @@ describe("Testing BookShelf class", () => {
   });
 });
 
-xdescribe("Testing BankAccount class", () => {
+describe("Testing BankAccount class", () => {
   let bankAccount;
 
   beforeEach(() => {

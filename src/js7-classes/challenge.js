@@ -419,7 +419,7 @@ export class BankAccount {
    * @param {string} email
    * @param {number} balance
    */
-  constructor(name, email, balance) {
+  constructor(name, email, balance = 0) {
     this.name = name;
     this.email = email;
     this._balance = balance;
@@ -431,6 +431,9 @@ export class BankAccount {
    */
 
   // WRITE BALANCE GETTER HERE
+  get balance() {
+    return this._balance;
+  }
 
   /**
    * A method that deposits to the balance.
@@ -442,6 +445,15 @@ export class BankAccount {
    */
 
   // WRITE DEPOSIT METHOD HERE
+  deposit(toDeposit) {
+      const convertedToNumber = +toDeposit; // + if the number is a string format, changes it to a number
+
+      if (!convertedToNumber || convertedToNumber < 0) return "Invalid input, unable to deposit";
+
+      this._balance += convertedToNumber;
+
+      return this.balance;
+    }
 
   /**
    * A method that withdraws from the balance.
@@ -454,4 +466,17 @@ export class BankAccount {
    */
 
   // WRITE WITH DRAW METHOD HERE
+  withdraw(toWithdraw) {
+    const numberStringToNumber = +toWithdraw;
+
+    if (!numberStringToNumber || numberStringToNumber < 0) {
+      return "Invalid input, unable to withdraw";
+    } else if (numberStringToNumber > this._balance) {
+      return "Insufficient funds, unable to withdraw";
+    }
+
+    this._balance -= numberStringToNumber;
+
+    return this._balance;
+  }
 }
